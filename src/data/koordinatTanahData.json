@@ -1,0 +1,12 @@
+{
+  "LOT1234": {
+    "lat": 6.4321,
+    "lng": 100.1234,
+    "lokasi": "Kampung Baru, Kedah"
+  },
+  "LOT5678": {
+    "lat": 5.8765,
+    "lng": 101.9876,
+    "lokasi": "Taman Bukit, Perlis"
+  }
+}

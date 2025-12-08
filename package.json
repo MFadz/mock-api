@@ -1,0 +1,27 @@
+{
+  "name": "mock-api",
+  "version": "1.0.0",
+  "main": "mock-server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --watch mock-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "imports": {
+    "#configs/*": "./src/configs/*.js",
+    "#routes/*": "./src/routes/*.js"
+  },
+  "author": "BLXCKJXCK",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "redis": "^5.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

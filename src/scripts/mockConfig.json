@@ -1,0 +1,18 @@
+{
+  "jpn": {
+    "service": "jpn",
+    "base_url": "http://localhost:5001",
+    "provider": "DummyProvider",
+    "url": "/v1/jpn",
+    "method": "POST",
+    "reqparam_map": {
+      "ic": "ic_number"
+    },
+    "resparam_map": {
+      "status": "response_status"
+    },
+    "fixed_param": {
+      "token": "dummy-token-1234"
+    }
+  }
+}
