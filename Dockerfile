@@ -22,4 +22,4 @@ EXPOSE 3000
 
 # Start your app (uses ESM because of "type": "module")
 USER node
-CMD ["pm2-runtime", "app.js", "-i", "max"]
+CMD ["pm2-runtime", "mock-server.js", "-i", "max"]
