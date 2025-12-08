@@ -4,7 +4,7 @@
   "main": "mock-server.js",
   "type": "module",
   "scripts": {
-    "start": "node --watch mock-server.js",
+    "start": "pm2 start mock-server.js --watch --name mock-api",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
