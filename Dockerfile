@@ -8,7 +8,8 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --omit=dev
+RUN npm install
+RUN npm install -g pm2
 
 # Copy the rest of the source code
 COPY . .
