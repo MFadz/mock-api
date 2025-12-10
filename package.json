@@ -10,7 +10,8 @@
   "keywords": [],
   "imports": {
     "#configs/*": "./src/configs/*.js",
-    "#routes/*": "./src/routes/*.js"
+    "#routes/*": "./src/routes/*.js",
+    "#controllers/*": "./src/controllers/*.js"
   },
   "author": "BLXCKJXCK",
   "license": "ISC",
