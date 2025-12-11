@@ -1,5 +1,14 @@
 import crypto from "crypto";
 
+const randomAlphabet = (length = 3) => {
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += letters[Math.floor(Math.random() * letters.length)];
+  }
+  return result;
+};
+
 export const mockCreatePayment = (req, res) => {
   const src = req.body || {};
 
@@ -155,7 +164,7 @@ export const VoucherOneToOnePayTo = async (req, res) => {
       status: "Success",
       code: "200",
       message: `Data has successfully integrated with the customer voucher / invoice number: ${voucher_no}`,
-      finance_voucher_no: + prefix +"/"+ randomOne + "/25",
+      finance_voucher_no: `${prefix}${randomOne}/25`,
     });
   } catch (err) {
     console.error("[mock-api] VoucherOneToOnePayTo error:", err);
