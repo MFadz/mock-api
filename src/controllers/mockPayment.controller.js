@@ -105,11 +105,15 @@ export const CheckBudget = async (req, res) => {
       });
     }
 
+      const randomOne = Array.from(crypto.randomBytes(3)).map(b => (b % 10).toString()).join('');
+
+      const randomTwo = Array.from(crypto.randomBytes(3)).map(b => (b % 10).toString()).join('');
+
     return res.json({
       status: "Success",
       code: "200",
       message: `Data has successfully checked with the customer payable item code: ${payable_item_code}. The budget is sufficient`,
-      finance_structure_budget: "E01-00000000-PPZ-02000000- B0912110"
+      finance_structure_budget: "E01-" + randomOne + "-PPZ-" + randomTwo + "- B0912110"
     });
   } catch (err) {
     console.error("[mock-api] CheckBudget error:", err);
@@ -142,12 +146,16 @@ export const VoucherOneToOnePayTo = async (req, res) => {
       });
     }
 
+    const randomOne = Array.from(crypto.randomBytes(3)).map(b => (b % 10).toString()).join('');
+
+    const prefix = randomAlphabet(3);
+
     // Fixed mock response (can change later if needed)
     return res.json({
       status: "Success",
       code: "200",
       message: `Data has successfully integrated with the customer voucher / invoice number: ${voucher_no}`,
-      finance_voucher_no: "VCZ026823/25",
+      finance_voucher_no: + prefix +"/"+ randomOne + "/25",
     });
   } catch (err) {
     console.error("[mock-api] VoucherOneToOnePayTo error:", err);
