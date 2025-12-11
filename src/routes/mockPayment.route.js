@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/mockPayment/test", mockPaymentController.mockCreatePayment);
 router.post("/mockPayment/PaymentReceivables", mockPaymentController.PaymentReceivables);
 router.post("/mockPayment/CheckBudget", mockPaymentController.CheckBudget);
-router.post("/mockPayment/ZakatDistribution", mockPaymentController.VoucherOneToOnePayTo);
+// router.post("/mockPayment/ZakatDistribution", mockPaymentController.VoucherOneToOnePayTo);
+router.post("/mockPayment/VoucherOneToOnePayTo", mockPaymentController.VoucherOneToOnePayTo);
 
 export default router;
