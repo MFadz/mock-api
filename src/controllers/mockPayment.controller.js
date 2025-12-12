@@ -176,9 +176,71 @@ export const VoucherOneToOnePayTo = async (req, res) => {
   }
 };
 
+export const mockPaymentOnce = async (req, res) => {
+  const start = Date.now();
+  const src = req.body || {};
+
+  console.log("💳 [MOCK-PG] payment-once hit:", src);
+
+  try {
+    const refnmber = src.refnmber || "TEST-REF-001";
+    const amount = Number(src.amount) || 1;
+    const channel = src.channel || "STRESS_SINGLE";
+    const meta = src.meta || null;
+
+    // Simulate latency (ms)
+    const delayMs = Number(process.env.MOCK_PG_DELAY_MS || 100);
+    if (delayMs > 0) {
+      await new Promise((r) => setTimeout(r, delayMs));
+    }
+
+    // Simulate random failure
+    const failRate = Number(process.env.MOCK_PG_FAIL_RATE || 0); // 0.1 = 10%
+    const isFail = Math.random() < failRate;
+
+    const transactionId =
+      "MOCKTX-" +
+      Date.now().toString(36) +
+      "-" +
+      crypto.randomBytes(3).toString("hex");
+
+    const response = {
+      provider: "MOCK_PG",
+      status: isFail ? "FAILED" : "SUCCESS",
+      code: isFail ? "99" : "00",
+      message: isFail
+        ? "Mock payment rejected"
+        : "Mock payment approved",
+      refnmber,
+      amount,
+      channel,
+      meta,
+      transactionId,
+      processedAt: new Date().toISOString(),
+      latencyMs: Date.now() - start,
+    };
+
+    console.log("✅ [MOCK-PG] response:", response);
+
+    // Always HTTP 200 – business result in body
+    return res.status(200).json(response);
+  } catch (err) {
+    console.error("❌ [MOCK-PG] error:", err);
+
+    return res.status(500).json({
+      provider: "MOCK_PG",
+      status: "ERROR",
+      code: "EX",
+      message: "Mock payment error",
+      error: err.message,
+    });
+  }
+};
+
 export default { 
     mockCreatePayment,
     PaymentReceivables,
     CheckBudget,
-    VoucherOneToOnePayTo
+    VoucherOneToOnePayTo,
+    mockPaymentOnce
 };

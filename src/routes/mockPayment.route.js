@@ -10,4 +10,6 @@ router.post("/mockPayment/CheckBudget", mockPaymentController.CheckBudget);
 // router.post("/mockPayment/ZakatDistribution", mockPaymentController.VoucherOneToOnePayTo);
 router.post("/mockPayment/VoucherOneToOnePayTo", mockPaymentController.VoucherOneToOnePayTo);
 
+router.post("/mockPayment/paymentOnce", mockPaymentController.mockPaymentOnce);
+
 export default router;
