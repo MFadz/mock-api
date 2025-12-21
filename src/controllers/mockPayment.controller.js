@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import axios from "axios";
 
 const randomAlphabet = (length = 3) => {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -237,10 +238,44 @@ export const mockPaymentOnce = async (req, res) => {
   }
 };
 
+export const mockKerisiZakatDistribution = async (req, res) => {
+  /**
+   * Allow override HTTP status:
+   * - via query: ?httpStatus=201
+   * - or via body: { httpStatus: 201 }
+   */
+  const httpStatus =
+    Number(req.query.httpStatus) ||
+    Number(req.body?.httpStatus) ||
+    200;
+
+  const activityId =
+    req.body?.voucher_no ||
+    req.body?.details?.[0]?.invoice_no ||
+    "MAIPS/A01/251221/A002";
+
+  // --- Mock response body (MATCHES your Postman output) ---
+  const responseBody = {
+    status: "SUCCESS",
+    message: "Forwarded to Kerisi successfully",
+    activity_id: activityId,
+    kerisi_http: httpStatus,
+    data: {
+      status: "Success",
+      code: httpStatus,
+      message: `Data has successfully integrated with the customer voucher / invoice number: ${activityId}`,
+      finance_voucher_no: "VCZ021025/25",
+    },
+  };
+
+  return res.status(httpStatus).json(responseBody);
+};
+
 export default { 
     mockCreatePayment,
     PaymentReceivables,
     CheckBudget,
     VoucherOneToOnePayTo,
-    mockPaymentOnce
+    mockPaymentOnce,
+    mockKerisiZakatDistribution
 };

@@ -12,4 +12,6 @@ router.post("/mockPayment/VoucherOneToOnePayTo", mockPaymentController.VoucherOn
 
 router.post("/mockPayment/paymentOnce", mockPaymentController.mockPaymentOnce);
 
+router.post("/mock/kerisi/zakat-distribution", mockPaymentController.mockKerisiZakatDistribution);
+
 export default router;
