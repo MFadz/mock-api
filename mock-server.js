@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
     console.log("✅ Root route registered");
     // Root route
-    app.get("/", (_req, res) => res.send("MOCK-API-SERVER [0.0.7]"));
+    app.get("/", (_req, res) => res.send("MOCK-API-SERVER [0.0.8]"));
 
     // 404 handler
     app.use((_req, _res, next) => {
